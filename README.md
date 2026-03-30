@@ -1,1 +1,674 @@
-# INBOX-VENTAS
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitPoint INBOX — Semana 23–29 Mar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --border: rgba(255,255,255,0.07);
+    --accent: #00e5a0;
+    --accent2: #ffc233;
+    --accent3: #4d9fff;
+    --red: #ff4d6d;
+    --text: #e8f0fe;
+    --muted: #6b7fa3;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font-body); min-height:100vh; }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:1000; opacity:0.4;
+  }
+
+  /* HEADER */
+  header {
+    background:linear-gradient(90deg,#0d1520 0%,#120d1a 100%);
+    border-bottom:1px solid var(--border);
+    padding:1.25rem 3rem;
+    display:flex; align-items:center; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  header::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,#a78bfa,transparent); }
+  header::before { content:'INBOX'; position:absolute; right:-10px; top:50%; transform:translateY(-50%); font-family:var(--font-display); font-size:7rem; color:rgba(167,139,250,0.04); letter-spacing:10px; pointer-events:none; }
+  .logo-area { display:flex; align-items:center; gap:1rem; }
+  .logo-box { background:#a78bfa; color:#000; font-family:var(--font-display); font-size:1.1rem; letter-spacing:2px; padding:0.3rem 0.6rem; border-radius:6px; }
+  .logo-text { font-family:var(--font-display); font-size:1.8rem; letter-spacing:4px; line-height:1; }
+  .logo-sub { font-size:0.65rem; color:var(--muted); letter-spacing:3px; text-transform:uppercase; font-family:var(--font-mono); }
+  .header-right { display:flex; align-items:center; gap:1rem; }
+  .week-badge { font-family:var(--font-display); font-size:1rem; letter-spacing:3px; background:linear-gradient(90deg,#a78bfa,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border:1px solid rgba(167,139,250,0.3); padding:0.3rem 0.9rem; border-radius:20px; animation:pulse-purple 2s ease-in-out infinite; }
+  @keyframes pulse-purple { 0%,100%{box-shadow:0 0 8px rgba(167,139,250,0.2)} 50%{box-shadow:0 0 20px rgba(167,139,250,0.4)} }
+  .date-pill { font-family:var(--font-mono); font-size:0.7rem; color:var(--muted); background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:0.3rem 0.75rem; border-radius:20px; letter-spacing:1px; }
+
+  /* TABS */
+  .tabs-nav { display:flex; align-items:center; padding:0 3rem; background:rgba(0,0,0,0.3); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); }
+  .tab-btn { font-family:var(--font-display); font-size:1rem; letter-spacing:3px; color:var(--muted); padding:0.9rem 2rem; cursor:pointer; border:none; background:none; border-bottom:2px solid transparent; transition:all 0.2s; display:flex; align-items:center; gap:0.5rem; }
+  .tab-btn:hover { color:var(--text); }
+  .tab-btn.active.tiendas { color:#a78bfa; border-bottom-color:#a78bfa; }
+  .tab-btn.active.web { color:var(--accent3); border-bottom-color:var(--accent3); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  main { padding:2rem 3rem; max-width:1600px; margin:0 auto; }
+
+  /* INSIGHTS */
+  .insights-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.65rem; margin-bottom:1.75rem; animation:fadeUp 0.4s ease both; }
+  .insight-box { background:rgba(255,194,51,0.05); border:1px solid rgba(255,194,51,0.2); border-radius:10px; padding:0.85rem 1.1rem; display:flex; align-items:flex-start; gap:0.6rem; }
+  .insight-box.blue { background:rgba(77,159,255,0.05); border-color:rgba(77,159,255,0.2); }
+  .insight-box.green { background:rgba(0,229,160,0.05); border-color:rgba(0,229,160,0.2); }
+  .insight-box.red { background:rgba(255,77,109,0.05); border-color:rgba(255,77,109,0.2); }
+  .insight-box.purple { background:rgba(167,139,250,0.05); border-color:rgba(167,139,250,0.2); }
+  .insight-icon { font-size:1rem; flex-shrink:0; margin-top:0.1rem; }
+  .insight-text { font-size:0.78rem; color:var(--text); line-height:1.5; }
+  .insight-text strong { color:var(--accent2); }
+  .insight-box.blue .insight-text strong { color:var(--accent3); }
+  .insight-box.green .insight-text strong { color:var(--accent); }
+  .insight-box.red .insight-text strong { color:var(--red); }
+  .insight-box.purple .insight-text strong { color:#a78bfa; }
+
+  /* KPI */
+  .kpi-hero { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; animation:fadeUp 0.5s ease both; }
+  .kpi-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.4rem 1.5rem; position:relative; overflow:hidden; transition:transform 0.2s,box-shadow 0.2s; }
+  .kpi-card:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+  .kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .kpi-card.v::before { background:#a78bfa; }
+  .kpi-card.u::before { background:var(--accent); }
+  .kpi-card.c::before { background:var(--accent2); }
+  .kpi-card.m::before { background:var(--red); }
+  .kpi-card.m-good::before { background:var(--accent); }
+  .kpi-label { font-family:var(--font-mono); font-size:0.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; }
+  .kpi-value { font-family:var(--font-display); font-size:2.5rem; letter-spacing:2px; line-height:1; margin-bottom:0.6rem; }
+  .kpi-card.v .kpi-value { color:#a78bfa; }
+  .kpi-card.u .kpi-value { color:var(--accent); }
+  .kpi-card.c .kpi-value { color:var(--accent2); }
+  .kpi-card.m .kpi-value { color:var(--red); }
+  .kpi-card.m-good .kpi-value { color:var(--accent); }
+  .kpi-vs { display:flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:0.4rem 0.6rem; margin-bottom:0.4rem; }
+  .kpi-vs-label { font-size:0.6rem; color:var(--muted); font-family:var(--font-mono); letter-spacing:1px; }
+  .kpi-vs-val { font-size:0.75rem; color:var(--text); font-family:var(--font-mono); margin-left:auto; }
+  .kpi-var { font-size:0.85rem; font-weight:700; font-family:var(--font-mono); }
+  .pos { color:var(--accent); } .neg { color:var(--red); } .neutral { color:var(--muted); }
+
+  /* SEC */
+  .sec { font-family:var(--font-display); font-size:1.1rem; letter-spacing:4px; color:var(--muted); text-transform:uppercase; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.75rem; }
+  .sec::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* SEC INSIGHTS */
+  .sec-insights { margin-bottom:1rem; }
+  .sec-insight { display:flex; align-items:flex-start; gap:0.5rem; padding:0.55rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; font-size:0.75rem; color:var(--text); line-height:1.45; }
+  .sec-insight.amber { background:rgba(255,194,51,0.06); border-left:3px solid rgba(255,194,51,0.4); }
+  .sec-insight.green { background:rgba(0,229,160,0.06); border-left:3px solid rgba(0,229,160,0.4); }
+  .sec-insight.red { background:rgba(255,77,109,0.06); border-left:3px solid rgba(255,77,109,0.4); }
+  .sec-insight.blue { background:rgba(77,159,255,0.06); border-left:3px solid rgba(77,159,255,0.4); }
+  .sec-insight.purple { background:rgba(167,139,250,0.06); border-left:3px solid rgba(167,139,250,0.4); }
+  .sec-insight strong { color:var(--accent2); }
+  .sec-insight.green strong { color:var(--accent); }
+  .sec-insight.red strong { color:var(--red); }
+  .sec-insight.blue strong { color:var(--accent3); }
+  .sec-insight.purple strong { color:#a78bfa; }
+  .si-icon { flex-shrink:0; }
+
+  /* TABLE */
+  .tiendas-section { margin-bottom:2rem; animation:fadeUp 0.5s 0.1s ease both; }
+  .tiendas-table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  thead th { font-family:var(--font-mono); font-size:0.6rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); padding:0.75rem 1rem; text-align:right; background:rgba(255,255,255,0.02); border-bottom:1px solid var(--border); font-weight:400; }
+  thead th:first-child { text-align:left; }
+  tbody td { padding:0.65rem 1rem; font-size:0.78rem; font-family:var(--font-mono); text-align:right; border-bottom:1px solid rgba(255,255,255,0.03); color:var(--text); }
+  tbody td:first-child { text-align:left; font-family:var(--font-body); font-weight:600; font-size:0.82rem; }
+  tbody tr:hover td { background:rgba(255,255,255,0.02); }
+  .total-row td { border-top:1px solid rgba(255,255,255,0.12)!important; border-bottom:none!important; font-weight:700; background:rgba(255,255,255,0.03); }
+  .var-chip { display:inline-block; padding:0.15rem 0.45rem; border-radius:4px; font-size:0.68rem; font-family:var(--font-mono); }
+  .var-chip.pos { background:rgba(0,229,160,0.1); color:var(--accent); }
+  .var-chip.neg { background:rgba(255,77,109,0.1); color:var(--red); }
+  .var-chip.neu { background:rgba(255,255,255,0.05); color:var(--muted); }
+  .mg-bar-cell { display:flex; align-items:center; gap:0.5rem; justify-content:flex-end; }
+  .mg-mini-bar { width:60px; height:6px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden; }
+  .mg-mini-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,var(--accent2),#ffd97a); }
+
+  /* TWO COL */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:2rem; animation:fadeUp 0.5s 0.15s ease both; }
+  .panel { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.4rem; }
+  .panel-title { font-family:var(--font-display); font-size:0.9rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:1.1rem; padding-bottom:0.65rem; border-bottom:1px solid var(--border); }
+
+  /* BARS */
+  .bar-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem; }
+  .bar-label { font-size:0.72rem; color:var(--text); width:120px; flex-shrink:0; font-family:var(--font-body); font-weight:500; }
+  .bar-track { flex:1; height:20px; background:rgba(255,255,255,0.04); border-radius:4px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding:0 0.4rem; font-size:0.6rem; font-family:var(--font-mono); color:rgba(0,0,0,0.8); white-space:nowrap; }
+  .bar-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.1rem; width:80px; flex-shrink:0; }
+  .bar-amount { font-size:0.68rem; color:var(--muted); font-family:var(--font-mono); }
+  .bar-var { font-size:0.62rem; font-family:var(--font-mono); font-weight:600; }
+
+  /* CATEG */
+  .categ-row { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+  .categ-name { font-size:0.75rem; color:var(--text); width:110px; flex-shrink:0; }
+  .categ-track { flex:1; height:18px; background:rgba(255,255,255,0.04); border-radius:4px; overflow:hidden; }
+  .categ-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding:0 0.4rem; font-size:0.6rem; font-family:var(--font-mono); color:rgba(0,0,0,0.8); white-space:nowrap; }
+  .categ-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.1rem; width:90px; flex-shrink:0; }
+  .categ-val { font-size:0.7rem; color:var(--text); font-family:var(--font-mono); }
+  .categ-mg { font-size:0.62rem; color:var(--accent2); font-family:var(--font-mono); }
+
+  .c1{background:linear-gradient(90deg,#4d9fff,#7bbdff)} .c2{background:linear-gradient(90deg,#00e5a0,#40ffbe)}
+  .c3{background:linear-gradient(90deg,#ffc233,#ffd97a)} .c4{background:linear-gradient(90deg,#ff6b8a,#ff9eb1)}
+  .c5{background:linear-gradient(90deg,#a78bfa,#c4b5fd)} .c6{background:linear-gradient(90deg,#34d399,#6ee7b7)}
+  .c7{background:linear-gradient(90deg,#fb923c,#fdba74)} .c8{background:linear-gradient(90deg,#e879f9,#f0abfc)}
+  .c9{background:linear-gradient(90deg,#60a5fa,#93c5fd)} .c10{background:linear-gradient(90deg,#4ade80,#86efac)}
+  .c11{background:linear-gradient(90deg,#f472b6,#f9a8d4)} .c12{background:linear-gradient(90deg,#38bdf8,#7dd3fc)}
+
+  /* MG SPOTLIGHT */
+  .mg-spotlight { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.4rem; margin-bottom:2rem; animation:fadeUp 0.5s 0.2s ease both; }
+  .mg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:0.75rem; margin-top:0.75rem; }
+  .mg-tile { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:0.85rem; text-align:center; transition:all 0.2s; }
+  .mg-tile:hover { transform:translateY(-2px); }
+  .mg-tile.winner { border-color:rgba(0,229,160,0.3); background:rgba(0,229,160,0.05); }
+  .mg-tile.loser { border-color:rgba(255,77,109,0.2); background:rgba(255,77,109,0.03); }
+  .mg-tile-brand { font-family:var(--font-mono); font-size:0.58rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:0.3rem; }
+  .mg-tile-val { font-family:var(--font-display); font-size:1.8rem; letter-spacing:1px; line-height:1; margin-bottom:0.25rem; color:var(--accent2); }
+  .mg-tile.winner .mg-tile-val { color:var(--accent); }
+  .mg-tile.loser .mg-tile-val { color:var(--red); }
+  .mg-tile-ly { font-size:0.62rem; color:var(--muted); font-family:var(--font-mono); }
+  .mg-tile-var { font-size:0.68rem; font-family:var(--font-mono); font-weight:700; margin-top:0.2rem; }
+
+  /* SUBFAM */
+  .subfam-row { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.6rem; }
+  .subfam-label { font-size:0.75rem; color:var(--text); width:95px; flex-shrink:0; }
+  .subfam-bar-track { flex:1; height:22px; background:rgba(255,255,255,0.04); border-radius:5px; overflow:hidden; }
+  .subfam-bar-fill { height:100%; border-radius:5px; display:flex; align-items:center; padding:0 0.5rem; font-size:0.62rem; font-family:var(--font-mono); color:rgba(0,0,0,0.85); font-weight:600; }
+  .subfam-pct { font-family:var(--font-mono); font-size:0.72rem; color:var(--text); width:45px; text-align:right; flex-shrink:0; }
+
+  /* BEST SELLERS */
+  .bs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:0.7rem; margin-bottom:2rem; animation:fadeUp 0.5s 0.3s ease both; }
+  .bs-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:0.9rem 1rem; position:relative; transition:all 0.2s; }
+  .bs-card:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,0.3); }
+  .bs-card.r1 { border-color:rgba(167,139,250,0.4); background:linear-gradient(135deg,#0d1520,#130d20); }
+  .bs-card.r2 { border-color:rgba(167,139,250,0.2); }
+  .bs-card.r3 { border-color:rgba(167,139,250,0.15); }
+  .bs-card.web-r1 { border-color:rgba(77,159,255,0.4); background:linear-gradient(135deg,#0d1520,#081524); }
+  .bs-card.web-r2 { border-color:rgba(77,159,255,0.2); }
+  .bs-card.web-r3 { border-color:rgba(77,159,255,0.15); }
+  .bs-rank { position:absolute; top:0.6rem; right:0.8rem; font-family:var(--font-display); font-size:1.5rem; color:rgba(255,255,255,0.05); }
+  .bs-card.r1 .bs-rank { color:rgba(167,139,250,0.18); }
+  .bs-card.web-r1 .bs-rank { color:rgba(77,159,255,0.18); }
+  .bs-name { font-size:0.82rem; font-weight:600; color:var(--text); padding-right:1.5rem; margin-bottom:0.1rem; }
+  .bs-brand { font-family:var(--font-mono); font-size:0.57rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+  .bs-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0.25rem; border-top:1px solid var(--border); padding-top:0.5rem; }
+  .bs-stat { display:flex; flex-direction:column; align-items:center; gap:0.1rem; }
+  .bs-sl { font-family:var(--font-mono); font-size:0.5rem; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+  .bs-sv { font-family:var(--font-mono); font-size:0.68rem; font-weight:500; color:var(--text); }
+  .bs-sv.mg { color:var(--accent2); } .bs-sv.hi { color:var(--accent); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  footer { text-align:center; padding:1.5rem; font-family:var(--font-mono); font-size:0.62rem; color:var(--muted); letter-spacing:2px; border-top:1px solid var(--border); margin-top:1rem; }
+
+  @media(max-width:900px) {
+    main{padding:1.5rem} header{padding:1rem 1.5rem} .tabs-nav{padding:0 1.5rem}
+    .kpi-hero{grid-template-columns:repeat(2,1fr)} .two-col{grid-template-columns:1fr} .insights-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-box">IB</div>
+    <div>
+      <div class="logo-text">INBOX</div>
+      <div class="logo-sub">Análisis Semanal · IB + Web</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="week-badge">📅 SEMANA 13 / 2026</div>
+    <div class="date-pill">23 — 29 / 03 / 2026</div>
+  </div>
+</header>
+
+<nav class="tabs-nav">
+  <button class="tab-btn tiendas active" onclick="switchTab('tiendas')">
+    <span>🏪</span> TIENDAS FÍSICAS
+  </button>
+  <button class="tab-btn web" onclick="switchTab('web')">
+    <span>🌐</span> CANAL WEB
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════ -->
+<!--  TAB TIENDAS                       -->
+<!-- ══════════════════════════════════ -->
+<div id="tab-tiendas" class="tab-panel active">
+<main>
+
+  <!-- INSIGHTS GLOBALES -->
+  <div class="insights-grid">
+    <div class="insight-box green">
+      <div class="insight-icon">📈</div>
+      <div class="insight-text"><strong>Ventas +70.94% vs LY</strong> — S/ 257,808 vs S/ 150,821 LY. Crecimiento extraordinario, más del doble que FitPoint (+26.51%). El canal Inbox está en plena expansión.</div>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-icon">✅</div>
+      <div class="insight-text"><strong>MG% sube ▲15.64 pp</strong> — 42.82% vs 27.18% LY. Mejora de margen masiva, a contracorriente de la caída en FitPoint (▼6.08 pp). El mix de marcas lifestyle genera más rentabilidad.</div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-icon">💵</div>
+      <div class="insight-text"><strong>Contribución +169.29% vs LY</strong> — S/ 110,399 vs S/ 40,997 LY. La contribución casi se triplica, la métrica más impresionante de la semana en todo el grupo.</div>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-icon">⚠️</div>
+      <div class="insight-text"><strong>IB_ASIA cierra operaciones</strong> — ▼100% en ventas y unidades vs LY (45 unidades, S/ 5,231 LY). IB_JOCKEY sin dato LY disponible. Dos tiendas con datos incompletos para comparar.</div>
+    </div>
+  </div>
+
+  <!-- KPI HERO -->
+  <div class="kpi-hero">
+    <div class="kpi-card v">
+      <div class="kpi-label">💰 Ventas Semana</div>
+      <div class="kpi-value">257,808</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">150,821</span></div>
+      <div class="kpi-var pos">▲ 70.94%</div>
+    </div>
+    <div class="kpi-card u">
+      <div class="kpi-label">📦 Unidades</div>
+      <div class="kpi-value">1,038</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">967</span></div>
+      <div class="kpi-var pos">▲ 7.34%</div>
+    </div>
+    <div class="kpi-card c">
+      <div class="kpi-label">💵 Contribución</div>
+      <div class="kpi-value">110,399</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">40,997</span></div>
+      <div class="kpi-var pos">▲ 169.29%</div>
+    </div>
+    <div class="kpi-card m-good">
+      <div class="kpi-label">📊 Margen %</div>
+      <div class="kpi-value">42.82%</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">27.18%</span></div>
+      <div class="kpi-var pos">▲ 15.64%</div>
+    </div>
+  </div>
+
+  <!-- VENTAS POR TIENDA -->
+  <div class="tiendas-section">
+    <div class="sec">Ventas por Tienda vs LY</div>
+    <div class="sec-insights">
+      <div class="sec-insight green"><span class="si-icon">🥇</span><div><strong>IB_JOCKEY lidera con S/ 91,691</strong> — sin dato LY pero con 288 unidades y MG% 43.74%. Es la tienda ancla del canal.</div></div>
+      <div class="sec-insight green"><span class="si-icon">✅</span><div><strong>IB_MP_TRUJILLO +3.05%</strong> en ventas con MG% disparado al 46.50% vs 26.09% LY (▲20.41 pp) — la mayor mejora de margen por tienda.</div></div>
+      <div class="sec-insight amber"><span class="si-icon">⚠️</span><div><strong>IB_MOLINA ▼2.57%</strong> en ventas y unidades ▼13.79%. MG% 16.05% vs 29.84% LY (▼13.79 pp) — la tienda con mayor deterioro de margen.</div></div>
+      <div class="sec-insight red"><span class="si-icon">🔴</span><div><strong>IB_ASIA ▼100%</strong> — cierre total vs LY. Deja de operar o no tuvo actividad esta semana. S/ 1,552 de contribución residual.</div></div>
+      <div class="sec-insight blue"><span class="si-icon">📌</span><div><strong>IB_MA_CHICLAYO +31.76%</strong> con MG% 45.33% — crecimiento sólido y margen por encima del total. La tienda más eficiente en términos de balance ventas-margen.</div></div>
+    </div>
+    <div class="tiendas-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tienda</th><th>Ventas</th><th>LY</th><th>Var%</th>
+            <th>Unid</th><th>Unid LY</th><th>Var% Unid</th>
+            <th>Contri</th><th>MG%</th><th>MG% LY</th><th>Vr% MG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IB JOCKEY</td><td>91,691</td><td>—</td>
+            <td><span class="var-chip neu">Sin LY</span></td>
+            <td>288</td><td>—</td><td><span class="var-chip neu">—</span></td>
+            <td>40,108</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:43.74%"></div></div>43.74%</div></td>
+            <td>—</td><td><span class="var-chip neu">—</span></td>
+          </tr>
+          <tr>
+            <td>IB MP TRUJILLO</td><td>64,465</td><td>62,560</td>
+            <td><span class="var-chip pos">▲ 3.05%</span></td>
+            <td>312</td><td>391</td><td><span class="var-chip neg">▼ 20.20%</span></td>
+            <td>29,976</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:46.50%"></div></div>46.50%</div></td>
+            <td>26.09%</td><td><span class="var-chip pos">▲ 20.41%</span></td>
+          </tr>
+          <tr>
+            <td>IB PLAZA NORTE</td><td>35,912</td><td>27,402</td>
+            <td><span class="var-chip pos">▲ 31.05%</span></td>
+            <td>154</td><td>185</td><td><span class="var-chip neg">▼ 16.76%</span></td>
+            <td>15,462</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:43.06%"></div></div>43.06%</div></td>
+            <td>24.58%</td><td><span class="var-chip pos">▲ 18.48%</span></td>
+          </tr>
+          <tr>
+            <td>IB MP AREQUIPA</td><td>25,716</td><td>20,213</td>
+            <td><span class="var-chip pos">▲ 27.23%</span></td>
+            <td>116</td><td>139</td><td><span class="var-chip neg">▼ 16.55%</span></td>
+            <td>12,228</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:47.55%"></div></div>47.55%</div></td>
+            <td>27.66%</td><td><span class="var-chip pos">▲ 19.89%</span></td>
+          </tr>
+          <tr>
+            <td>IB MA CHICLAYO</td><td>21,183</td><td>16,076</td>
+            <td><span class="var-chip pos">▲ 31.76%</span></td>
+            <td>68</td><td>91</td><td><span class="var-chip neg">▼ 25.27%</span></td>
+            <td>9,602</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:45.33%"></div></div>45.33%</div></td>
+            <td>31.28%</td><td><span class="var-chip pos">▲ 14.05%</span></td>
+          </tr>
+          <tr>
+            <td>IB MOLINA</td><td>18,842</td><td>19,338</td>
+            <td><span class="var-chip neg">▼ 2.57%</span></td>
+            <td>100</td><td>116</td><td><span class="var-chip neg">▼ 13.79%</span></td>
+            <td>3,023</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:16.05%"></div></div>16.05%</div></td>
+            <td>29.84%</td><td><span class="var-chip neg">▼ 13.79%</span></td>
+          </tr>
+          <tr>
+            <td>IB ASIA</td><td>—</td><td>5,231</td>
+            <td><span class="var-chip neg">▼ 100%</span></td>
+            <td>—</td><td>45</td><td><span class="var-chip neg">▼ 100%</span></td>
+            <td>1,552</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:29.67%"></div></div>—</div></td>
+            <td>29.67%</td><td><span class="var-chip neg">▼ 29.67%</span></td>
+          </tr>
+          <tr class="total-row">
+            <td>TOTAL</td><td>257,808</td><td>150,821</td>
+            <td><span class="var-chip pos">▲ 70.94%</span></td>
+            <td>1,038</td><td>967</td><td><span class="var-chip pos">▲ 7.34%</span></td>
+            <td>110,399</td>
+            <td><div class="mg-bar-cell"><div class="mg-mini-bar"><div class="mg-mini-fill" style="width:42.82%"></div></div>42.82%</div></td>
+            <td>27.18%</td><td><span class="var-chip pos">▲ 15.64%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MG% SPOTLIGHT -->
+  <div class="mg-spotlight">
+    <div class="sec">MG% por Marca — Radar de Margen</div>
+    <div class="sec-insights">
+      <div class="sec-insight green"><span class="si-icon">🥇</span><div><strong>UGG lidera margen con 73.86%</strong> (▲44.01 pp vs LY) — la marca más rentable del portafolio Inbox por lejos. Solo 10 unidades pero altísima contribución relativa.</div></div>
+      <div class="sec-insight green"><span class="si-icon">✅</span><div><strong>CROCS al 65.49%</strong> y Clean Lab al 40.10% — marcas lifestyle con márgenes muy superiores al promedio. El giro hacia lifestyle es el driver de la mejora de MG%.</div></div>
+      <div class="sec-insight red"><span class="si-icon">🔴</span><div><strong>TIMBERLAND con 65.45% MG</strong> y S/ 17,766 en ventas — excelente margen. Pero <strong>PUMA cayó ▼65.45%</strong> en ventas aunque mantiene 40.42% MG.</div></div>
+      <div class="sec-insight amber"><span class="si-icon">⚡</span><div><strong>NEW BALANCE domina ventas (38.5%) con 37.94% MG</strong> y creció +350.54% vs LY — volumen masivo pero margen por debajo del promedio total (42.82%).</div></div>
+    </div>
+    <div class="mg-grid">
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">UGG</div>
+        <div class="mg-tile-val">73.86%</div>
+        <div class="mg-tile-ly">LY: 29.85%</div>
+        <div class="mg-tile-var pos">▲ 44.01%</div>
+      </div>
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">TIMBERLAND</div>
+        <div class="mg-tile-val">65.45%</div>
+        <div class="mg-tile-ly">LY: —</div>
+        <div class="mg-tile-var pos">Nueva</div>
+      </div>
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">CROCS</div>
+        <div class="mg-tile-val">65.49%</div>
+        <div class="mg-tile-ly">LY: 62.57%</div>
+        <div class="mg-tile-var pos">▲ 2.92%</div>
+      </div>
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">ASICS</div>
+        <div class="mg-tile-val">54.86%</div>
+        <div class="mg-tile-ly">LY: 39.73%</div>
+        <div class="mg-tile-var pos">▲ 15.13%</div>
+      </div>
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">VEJA</div>
+        <div class="mg-tile-val">39.45%</div>
+        <div class="mg-tile-ly">LY: —</div>
+        <div class="mg-tile-var pos">Nueva</div>
+      </div>
+      <div class="mg-tile">
+        <div class="mg-tile-brand">NEW BALANCE</div>
+        <div class="mg-tile-val">37.94%</div>
+        <div class="mg-tile-ly">LY: 31.14%</div>
+        <div class="mg-tile-var pos">▲ 6.80%</div>
+      </div>
+      <div class="mg-tile">
+        <div class="mg-tile-brand">ADIDAS</div>
+        <div class="mg-tile-val">37.17%</div>
+        <div class="mg-tile-ly">LY: 20.08%</div>
+        <div class="mg-tile-var pos">▲ 17.09%</div>
+      </div>
+      <div class="mg-tile winner">
+        <div class="mg-tile-brand">CLEAN LAB</div>
+        <div class="mg-tile-val">40.10%</div>
+        <div class="mg-tile-ly">LY: 40.16%</div>
+        <div class="mg-tile-var neg">▼ 0.07%</div>
+      </div>
+      <div class="mg-tile">
+        <div class="mg-tile-brand">JANSPORT</div>
+        <div class="mg-tile-val">31.16%</div>
+        <div class="mg-tile-ly">LY: 14.57%</div>
+        <div class="mg-tile-var pos">▲ 16.59%</div>
+      </div>
+      <div class="mg-tile">
+        <div class="mg-tile-brand">PUMA</div>
+        <div class="mg-tile-val">40.42%</div>
+        <div class="mg-tile-ly">LY: 41.03%</div>
+        <div class="mg-tile-var neg">▼ 0.61%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCAS + CATEGORÍAS -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Ventas por Marca vs LY</div>
+      <div class="sec-insights" style="margin-bottom:0.85rem;">
+        <div class="sec-insight green"><span class="si-icon">🚀</span><div><strong>New Balance +350.54%</strong> — de S/ 22,050 a S/ 99,344. Se convierte en la marca dominante de Inbox esta semana con 38.5% del mix.</div></div>
+        <div class="sec-insight red"><span class="si-icon">📉</span><div><strong>PUMA ▼65.45%</strong> — de S/ 12,987 a S/ 4,488. La caída más pronunciada. Jansport también cae ▼37.64%.</div></div>
+      </div>
+      <div class="bar-row"><span class="bar-label">NEW BALANCE</span><div class="bar-track"><div class="bar-fill c5" style="width:38.5%">99,344</div></div><div class="bar-right"><span class="bar-amount">38.5%</span><span class="bar-var pos">▲ 350.54%</span></div></div>
+      <div class="bar-row"><span class="bar-label">ADIDAS</span><div class="bar-track"><div class="bar-fill c4" style="width:22.1%">56,841</div></div><div class="bar-right"><span class="bar-amount">22.1%</span><span class="bar-var pos">▲ 26.09%</span></div></div>
+      <div class="bar-row"><span class="bar-label">TIMBERLAND</span><div class="bar-track"><div class="bar-fill c7" style="width:6.9%">17,766</div></div><div class="bar-right"><span class="bar-amount">6.9%</span><span class="bar-var neu">Nueva</span></div></div>
+      <div class="bar-row"><span class="bar-label">ASICS</span><div class="bar-track"><div class="bar-fill c1" style="width:6.0%">15,434</div></div><div class="bar-right"><span class="bar-amount">6.0%</span><span class="bar-var pos">▲ 120.68%</span></div></div>
+      <div class="bar-row"><span class="bar-label">VEJA</span><div class="bar-track"><div class="bar-fill c2" style="width:5.8%">14,913</div></div><div class="bar-right"><span class="bar-amount">5.8%</span><span class="bar-var neu">Nueva</span></div></div>
+      <div class="bar-row"><span class="bar-label">CROCS</span><div class="bar-track"><div class="bar-fill c6" style="width:3.1%">8,040</div></div><div class="bar-right"><span class="bar-amount">3.1%</span><span class="bar-var pos">▲ 12.93%</span></div></div>
+      <div class="bar-row"><span class="bar-label">UGG</span><div class="bar-track"><div class="bar-fill c3" style="width:2.7%">6,854</div></div><div class="bar-right"><span class="bar-amount">2.7%</span><span class="bar-var pos">▲ 147.38%</span></div></div>
+      <div class="bar-row"><span class="bar-label">CLEAN LAB</span><div class="bar-track"><div class="bar-fill c9" style="width:2.1%">5,480</div></div><div class="bar-right"><span class="bar-amount">2.1%</span><span class="bar-var pos">▲ 69.10%</span></div></div>
+      <div class="bar-row"><span class="bar-label">JANSPORT</span><div class="bar-track"><div class="bar-fill c8" style="width:1.9%">4,979</div></div><div class="bar-right"><span class="bar-amount">1.9%</span><span class="bar-var neg">▼ 37.64%</span></div></div>
+      <div class="bar-row"><span class="bar-label">PUMA</span><div class="bar-track"><div class="bar-fill c11" style="width:1.7%">4,488</div></div><div class="bar-right"><span class="bar-amount">1.7%</span><span class="bar-var neg">▼ 65.45%</span></div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Ventas por Categoría + MG%</div>
+      <div class="sec-insights" style="margin-bottom:0.85rem;">
+        <div class="sec-insight green"><span class="si-icon">🏆</span><div><strong>Sportstyle domina con 66.5% del mix</strong> (S/ 171,470) y creció +274.74% vs LY. El DNA de Inbox es lifestyle/sportstyle, no performance.</div></div>
+        <div class="sec-insight red"><span class="si-icon">📉</span><div><strong>Urbano cayó ▼36.24%</strong> (S/ 53,118) — antes era la categoría más grande y está cediendo espacio a Sportstyle rápidamente.</div></div>
+        <div class="sec-insight amber"><span class="si-icon">⚡</span><div><strong>"No" y "Sin Definir"</strong> suman S/ 25,376 sin categoría clara. Importante clasificarlos para análisis correcto del mix.</div></div>
+      </div>
+      <div class="categ-row"><span class="categ-name">Sportstyle</span><div class="categ-track"><div class="categ-fill c5" style="width:66.5%">171,470</div></div><div class="categ-right"><span class="categ-val pos">▲ 274.74%</span><span class="categ-mg">MG 40.43%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Urbano</span><div class="categ-track"><div class="categ-fill c7" style="width:20.6%">53,118</div></div><div class="categ-right"><span class="categ-val neg">▼ 36.24%</span><span class="categ-mg">MG 38.83%</span></div></div>
+      <div class="categ-row"><span class="categ-name">No Definido</span><div class="categ-track"><div class="categ-fill c3" style="width:7.3%">18,907</div></div><div class="categ-right"><span class="categ-val pos">▲ 5,229%</span><span class="categ-mg">MG 65.56%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Sin Definir</span><div class="categ-track"><div class="categ-fill c8" style="width:2.5%">6,469</div></div><div class="categ-right"><span class="categ-val neg">▼ 39.62%</span><span class="categ-mg">MG 47.01%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Sí</span><div class="categ-track"><div class="categ-fill c2" style="width:2.4%">6,120</div></div><div class="categ-right"><span class="categ-val pos">▲ 3.30%</span><span class="categ-mg">MG 67.26%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Lentes de sol</span><div class="categ-track"><div class="categ-fill c9" style="width:0.3%">802</div></div><div class="categ-right"><span class="categ-val neg">▼ 18.83%</span><span class="categ-mg">MG 65.77%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Loose C</span><div class="categ-track"><div class="categ-fill c6" style="width:0.1%">268</div></div><div class="categ-right"><span class="categ-val pos">▲ 42.34%</span><span class="categ-mg">MG 58.72%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Pack 5E</span><div class="categ-track"><div class="categ-fill c10" style="width:0.1%">216</div></div><div class="categ-right"><span class="categ-val pos">▲ 28.78%</span><span class="categ-mg">MG 33.93%</span></div></div>
+      <div class="categ-row"><span class="categ-name">Running</span><div class="categ-track"><div class="categ-fill c1" style="width:0.05%">126</div></div><div class="categ-right"><span class="categ-val neg">▼ 67.90%</span><span class="categ-mg">MG 42.61%</span></div></div>
+    </div>
+  </div>
+
+  <!-- MIX SUBFAM -->
+  <div style="margin-bottom:2rem; animation:fadeUp 0.5s 0.22s ease both;">
+    <div class="sec">Mix por SubFamilia</div>
+    <div class="sec-insights">
+      <div class="sec-insight purple"><span class="si-icon">👟</span><div><strong>Calzados al 90.58%</strong> — Inbox es casi exclusivamente calzado. Accesorios y Ropa son marginales (&lt;10%), muy diferente al mix de FitPoint (69.82% calzado). El modelo de negocio es puro footwear lifestyle.</div></div>
+    </div>
+    <div class="panel" style="max-width:600px;">
+      <div class="panel-title">SubFam — Tiendas Inbox</div>
+      <div class="subfam-row"><span class="subfam-label">Calzados</span><div class="subfam-bar-track"><div class="subfam-bar-fill c5" style="width:90.58%">90.58%</div></div><span class="subfam-pct">90.58%</span></div>
+      <div class="subfam-row"><span class="subfam-label">Accesorios</span><div class="subfam-bar-track"><div class="subfam-bar-fill c3" style="width:6%">~6%</div></div><span class="subfam-pct">~6%</span></div>
+      <div class="subfam-row"><span class="subfam-label">Ropa</span><div class="subfam-bar-track"><div class="subfam-bar-fill c2" style="width:2%">~2%</div></div><span class="subfam-pct">~2%</span></div>
+      <div class="subfam-row"><span class="subfam-label">Bolsas</span><div class="subfam-bar-track"><div class="subfam-bar-fill c7" style="width:1%">~1%</div></div><span class="subfam-pct">~1%</span></div>
+    </div>
+  </div>
+
+  <!-- BEST SELLERS TIENDAS -->
+  <div class="sec">🏆 Best Sellers — Tiendas Inbox</div>
+  <div class="sec-insights">
+    <div class="sec-insight purple"><span class="si-icon">🥇</span><div><strong>NB 530 lidera con S/ 28,080</strong> — casi el doble del segundo lugar. El modelo icónico de New Balance es el bestseller absoluto de Inbox.</div></div>
+    <div class="sec-insight green"><span class="si-icon">📌</span><div><strong>NB 740 en #2 (S/ 24,880) y NB 9060 en #4 (S/ 10,310)</strong> — New Balance copa 3 de los top 4. Confirma el dominio total de la marca esta semana.</div></div>
+    <div class="sec-insight amber"><span class="si-icon">🆕</span><div><strong>Superstar II (Adidas) en #3</strong> con S/ 16,810 — modelo retro lifestyle de alto rendimiento. Samba OG en #5 (S/ 9,740) refuerza el dominio Adidas en el segmento clásico.</div></div>
+  </div>
+  <div class="bs-grid">
+    <div class="bs-card r1"><div class="bs-rank">#1</div><div class="bs-name">NB 530</div><div class="bs-brand">NEW BALANCE · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">28,080</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card r2"><div class="bs-rank">#2</div><div class="bs-name">NB 740</div><div class="bs-brand">NEW BALANCE · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">24,880</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card r3"><div class="bs-rank">#3</div><div class="bs-name">Superstar II</div><div class="bs-brand">ADIDAS · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">16,810</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#4</div><div class="bs-name">NB 9060</div><div class="bs-brand">NEW BALANCE · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">16,310</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#5</div><div class="bs-name">Samba OG</div><div class="bs-brand">ADIDAS · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">9,740</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#6</div><div class="bs-name">NB 327</div><div class="bs-brand">NEW BALANCE · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">10,780</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#7</div><div class="bs-name">Campo</div><div class="bs-brand">ADIDAS · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">8,290</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#8</div><div class="bs-name">NB 1906</div><div class="bs-brand">NEW BALANCE · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">7,190</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#9</div><div class="bs-name">Motion Access Low</div><div class="bs-brand">TIMBERLAND · Urbano</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">4,420</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+    <div class="bs-card"><div class="bs-rank">#10</div><div class="bs-name">SL 72 RS</div><div class="bs-brand">ADIDAS · Sportstyle</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">3,680</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv mg">—</span></div></div></div>
+  </div>
+
+</main>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!--  TAB WEB                           -->
+<!-- ══════════════════════════════════ -->
+<div id="tab-web" class="tab-panel">
+<main>
+
+  <!-- INSIGHTS GLOBALES WEB -->
+  <div class="insights-grid">
+    <div class="insight-box red">
+      <div class="insight-icon">📉</div>
+      <div class="insight-text"><strong>Ventas Web ▼37.90% vs LY</strong> — S/ 48,281 vs S/ 77,741 LY. El canal web de Inbox va en dirección opuesta a tiendas (+70.94%). Señal de alerta clara en la estrategia digital.</div>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-icon">✅</div>
+      <div class="insight-text"><strong>MG% Web ▲29.49 pp</strong> — 36.13% vs 6.64% LY. Aunque vendió menos, el margen mejoró dramáticamente. La rentabilidad por unidad vendida online es mucho mejor que el año pasado.</div>
+    </div>
+    <div class="insight-box red">
+      <div class="insight-icon">⚠️</div>
+      <div class="insight-text"><strong>Unidades ▼50.12%</strong> — 213 vs 427 LY. Se vendió la mitad de unidades que el año pasado. La caída en volumen es el problema central del canal web esta semana.</div>
+    </div>
+    <div class="insight-box green">
+      <div class="insight-icon">💵</div>
+      <div class="insight-text"><strong>Contribución +237.98%</strong> — S/ 17,444 vs S/ 5,161 LY. A pesar de vender menos, se genera 3.4x más contribución. Señal de que el mix de productos web mejoró radicalmente.</div>
+    </div>
+  </div>
+
+  <!-- KPI WEB -->
+  <div class="kpi-hero">
+    <div class="kpi-card m">
+      <div class="kpi-label">💰 Ventas Web</div>
+      <div class="kpi-value">48,281</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">77,741</span></div>
+      <div class="kpi-var neg">▼ 37.90%</div>
+    </div>
+    <div class="kpi-card m">
+      <div class="kpi-label">📦 Unidades</div>
+      <div class="kpi-value">213</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">427</span></div>
+      <div class="kpi-var neg">▼ 50.12%</div>
+    </div>
+    <div class="kpi-card c">
+      <div class="kpi-label">💵 Contribución</div>
+      <div class="kpi-value">17,444</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">5,161</span></div>
+      <div class="kpi-var pos">▲ 237.98%</div>
+    </div>
+    <div class="kpi-card m-good">
+      <div class="kpi-label">📊 Margen %</div>
+      <div class="kpi-value">36.13%</div>
+      <div class="kpi-vs"><span class="kpi-vs-label">LY</span><span class="kpi-vs-val">6.64%</span></div>
+      <div class="kpi-var pos">▲ 29.49%</div>
+    </div>
+  </div>
+
+  <!-- MARCAS + CATEGORÍAS WEB -->
+  <div class="two-col">
+    <div class="panel" style="border-color:rgba(77,159,255,0.2)">
+      <div class="panel-title">Ventas por Marca — Web</div>
+      <div class="sec-insights" style="margin-bottom:0.85rem;">
+        <div class="sec-insight blue"><span class="si-icon">🔵</span><div><strong>Timberland lidera web con S/ 11,080</strong> — inverso a tiendas donde domina NB. La marca tiene mayor tracción digital que física en Inbox.</div></div>
+        <div class="sec-insight amber"><span class="si-icon">⚡</span><div><strong>UGG y NB equilibrados</strong> en S/ 8,240 y S/ 8,180 respectivamente. F.Jällräven aparece solo en web (S/ 3,120) — marca con audiencia digital específica.</div></div>
+      </div>
+      <div class="bar-row"><span class="bar-label">TIMBERLAND</span><div class="bar-track"><div class="bar-fill c7" style="width:22.9%">11,080</div></div><div class="bar-right"><span class="bar-amount">22.9%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">UGG</span><div class="bar-track"><div class="bar-fill c3" style="width:17.1%">8,240</div></div><div class="bar-right"><span class="bar-amount">17.1%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">NEW BALANCE</span><div class="bar-track"><div class="bar-fill c5" style="width:16.9%">8,180</div></div><div class="bar-right"><span class="bar-amount">16.9%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">ASICS</span><div class="bar-track"><div class="bar-fill c1" style="width:9.4%">4,560</div></div><div class="bar-right"><span class="bar-amount">9.4%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">ADIDAS</span><div class="bar-track"><div class="bar-fill c4" style="width:8.1%">3,890</div></div><div class="bar-right"><span class="bar-amount">8.1%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">F.JÄLLRÄVEN</span><div class="bar-track"><div class="bar-fill c6" style="width:6.5%">3,120</div></div><div class="bar-right"><span class="bar-amount">6.5%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">DIESEL</span><div class="bar-track"><div class="bar-fill c8" style="width:2.9%">1,380</div></div><div class="bar-right"><span class="bar-amount">2.9%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">HAVAIANAS</span><div class="bar-track"><div class="bar-fill c9" style="width:2.5%">1,190</div></div><div class="bar-right"><span class="bar-amount">2.5%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">CONVERSE</span><div class="bar-track"><div class="bar-fill c10" style="width:2.5%">1,190</div></div><div class="bar-right"><span class="bar-amount">2.5%</span><span class="bar-var neu">—</span></div></div>
+      <div class="bar-row"><span class="bar-label">HEY DUDE</span><div class="bar-track"><div class="bar-fill c11" style="width:2.2%">1,070</div></div><div class="bar-right"><span class="bar-amount">2.2%</span><span class="bar-var neu">—</span></div></div>
+    </div>
+
+    <div class="panel" style="border-color:rgba(77,159,255,0.2)">
+      <div class="panel-title">Ventas por Categoría — Web</div>
+      <div class="sec-insights" style="margin-bottom:0.85rem;">
+        <div class="sec-insight blue"><span class="si-icon">👟</span><div><strong>Sportstyle también lidera web</strong> con S/ 20,660 (42.8%) pero "No Definido" representa S/ 12,270 (25.4%) — casi un cuarto del canal sin categoría asignada.</div></div>
+        <div class="sec-insight amber"><span class="si-icon">⚠️</span><div><strong>Urbano solo S/ 10,010 en web</strong> vs S/ 53,118 en tiendas — gran diferencia. El producto urbano tiene mucho más demanda física que digital.</div></div>
+      </div>
+      <div class="categ-row"><span class="categ-name">Sportstyle</span><div class="categ-track"><div class="categ-fill c5" style="width:42.8%">20,660</div></div><div class="categ-right"><span class="categ-val">42.8%</span><span class="categ-mg">—</span></div></div>
+      <div class="categ-row"><span class="categ-name">No Definido</span><div class="categ-track"><div class="categ-fill c3" style="width:25.4%">12,270</div></div><div class="categ-right"><span class="categ-val">25.4%</span><span class="categ-mg">—</span></div></div>
+      <div class="categ-row"><span class="categ-name">Urbano</span><div class="categ-track"><div class="categ-fill c7" style="width:20.7%">10,010</div></div><div class="categ-right"><span class="categ-val">20.7%</span><span class="categ-mg">—</span></div></div>
+      <div class="categ-row"><span class="categ-name">Lentes de sol</span><div class="categ-track"><div class="categ-fill c9" style="width:0.2%">80</div></div><div class="categ-right"><span class="categ-val">0.2%</span><span class="categ-mg">—</span></div></div>
+    </div>
+  </div>
+
+  <!-- MIX SUBFAM WEB -->
+  <div style="margin-bottom:2rem; animation:fadeUp 0.5s 0.22s ease both;">
+    <div class="sec">Mix por SubFamilia — Web</div>
+    <div class="sec-insights">
+      <div class="sec-insight blue"><span class="si-icon">👟</span><div><strong>Calzados 86.35% en web</strong> — similar a tiendas (90.58%). Accesorios web (9.92%) es proporcionalmente mayor que en tiendas, lo que indica que los accesorios tienen mejor penetración digital. Ropa en 3.70% es residual.</div></div>
+    </div>
+    <div class="panel" style="max-width:600px;">
+      <div class="panel-title">SubFam — Web Inbox</div>
+      <div class="subfam-row"><span class="subfam-label">Calzados</span><div class="subfam-bar-track"><div class="subfam-bar-fill c5" style="width:86.35%">86.35%</div></div><span class="subfam-pct">86.35%</span></div>
+      <div class="subfam-row"><span class="subfam-label">Accesorios</span><div class="subfam-bar-track"><div class="subfam-bar-fill c3" style="width:9.92%">9.92%</div></div><span class="subfam-pct">9.92%</span></div>
+      <div class="subfam-row"><span class="subfam-label">Ropa</span><div class="subfam-bar-track"><div class="subfam-bar-fill c2" style="width:3.70%">3.70%</div></div><span class="subfam-pct">3.70%</span></div>
+    </div>
+  </div>
+
+  <!-- BEST SELLERS WEB -->
+  <div class="sec">🌐 Best Sellers — Canal Web Inbox</div>
+  <div class="sec-insights">
+    <div class="sec-insight blue"><span class="si-icon">🥇</span><div><strong>Classic Short II W (UGG) lidera web</strong> con S/ 2,820 — modelo de temporada invernal. En tiendas UGG no aparece en el top, pero online sí convierte. Cliente web busca productos diferentes.</div></div>
+    <div class="sec-insight green"><span class="si-icon">🔄</span><div><strong>GEL-Nyc (ASICS) en #2 web</strong> (S/ 1,980) — modelo lifestyle de ASICS que aparece solo en web, no en el top físico. Confirma que el canal digital captura demanda de nicho/lifestyle.</div></div>
+    <div class="sec-insight amber"><span class="si-icon">📌</span><div><strong>NB 530 está en ambos canales</strong> (#3 web con S/ 1,510, #1 tiendas con S/ 28,080) — el modelo más consistente del portafolio Inbox. W Classic Ultra Mini Platf. (UGG) en #4 refuerza el protagonismo de UGG online.</div></div>
+  </div>
+  <div class="bs-grid">
+    <div class="bs-card web-r1"><div class="bs-rank">#1</div><div class="bs-name">Classic Short II W</div><div class="bs-brand">UGG · Urbano Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">2,820</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card web-r2"><div class="bs-rank">#2</div><div class="bs-name">GEL-Nyc</div><div class="bs-brand">ASICS · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,980</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card web-r3"><div class="bs-rank">#3</div><div class="bs-name">NB 530</div><div class="bs-brand">NEW BALANCE · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,510</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#4</div><div class="bs-name">W Classic Ultra Mini Platf.</div><div class="bs-brand">UGG · Urbano Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,320</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#5</div><div class="bs-name">NB 740</div><div class="bs-brand">NEW BALANCE · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,240</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#6</div><div class="bs-name">Allston Sneaker</div><div class="bs-brand">TIMBERLAND · Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,200</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">MG%</span><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#7</div><div class="bs-name">NB 2002</div><div class="bs-brand">NEW BALANCE · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,120</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#8</div><div class="bs-name">Panenka</div><div class="bs-brand">ADIDAS · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,050</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#9</div><div class="bs-name">NB 327</div><div class="bs-brand">NEW BALANCE · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,040</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sv hi">—</span></div></div></div>
+    <div class="bs-card" style="border-color:rgba(77,159,255,0.1)"><div class="bs-rank">#10</div><div class="bs-name">NB 204L</div><div class="bs-brand">NEW BALANCE · Sportstyle Web</div><div class="bs-stats"><div class="bs-stat"><span class="bs-sl">Ventas</span><span class="bs-sv">1,000</span></div><div class="bs-stat"><span class="bs-sl">Unid</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sl">Contri</span><span class="bs-sv">—</span></div><div class="bs-stat"><span class="bs-sv hi">—</span></div></div></div>
+  </div>
+
+</main>
+</div>
+
+<footer>
+  INBOX · ANÁLISIS SEMANAL 23–29 MAR 2026 · TIENDAS IB + CANAL WEB · DATOS INTERNOS
+</footer>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.tab-btn.' + tab).classList.add('active');
+    window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop, behavior:'smooth' });
+  }
+</script>
+</body>
+</html>
